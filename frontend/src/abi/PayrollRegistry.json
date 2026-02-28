@@ -1,0 +1,365 @@
+[
+  {
+    "type": "function",
+    "name": "registerCompany",
+    "inputs": [
+      { "name": "name", "type": "string", "internalType": "string" },
+      { "name": "description", "type": "string", "internalType": "string" },
+      { "name": "payrollInterval", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addEmployee",
+    "inputs": [
+      { "name": "wallet", "type": "address", "internalType": "address" },
+      { "name": "name", "type": "string", "internalType": "string" },
+      { "name": "role", "type": "string", "internalType": "string" },
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "monthlySalary", "type": "uint256", "internalType": "uint256" },
+      { "name": "streamRate", "type": "uint256", "internalType": "uint256" },
+      { "name": "paymentType", "type": "uint8", "internalType": "enum PayrollRegistry.PaymentType" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "removeEmployee",
+    "inputs": [
+      { "name": "employeeWallet", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateSalary",
+    "inputs": [
+      { "name": "employeeWallet", "type": "address", "internalType": "address" },
+      { "name": "newMonthlySalary", "type": "uint256", "internalType": "uint256" },
+      { "name": "newStreamRate", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "depositFunds",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawFunds",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "executePayroll",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimStream",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getStreamableAmount",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" },
+      { "name": "employee", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getEmployees",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      { "name": "addrs", "type": "address[]", "internalType": "address[]" },
+      {
+        "name": "emps",
+        "type": "tuple[]",
+        "internalType": "struct PayrollRegistry.Employee[]",
+        "components": [
+          { "name": "wallet", "type": "address", "internalType": "address" },
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "role", "type": "string", "internalType": "string" },
+          { "name": "token", "type": "address", "internalType": "address" },
+          { "name": "monthlySalary", "type": "uint256", "internalType": "uint256" },
+          { "name": "streamRate", "type": "uint256", "internalType": "uint256" },
+          { "name": "paymentType", "type": "uint8", "internalType": "enum PayrollRegistry.PaymentType" },
+          { "name": "isActive", "type": "bool", "internalType": "bool" },
+          { "name": "addedAt", "type": "uint256", "internalType": "uint256" },
+          { "name": "lastPaidAt", "type": "uint256", "internalType": "uint256" },
+          { "name": "streamStartedAt", "type": "uint256", "internalType": "uint256" },
+          { "name": "streamClaimedAmount", "type": "uint256", "internalType": "uint256" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "companies",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [
+      { "name": "name", "type": "string", "internalType": "string" },
+      { "name": "description", "type": "string", "internalType": "string" },
+      { "name": "isRegistered", "type": "bool", "internalType": "bool" },
+      { "name": "createdAt", "type": "uint256", "internalType": "uint256" },
+      { "name": "payrollInterval", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "employees",
+    "inputs": [
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      { "name": "wallet", "type": "address", "internalType": "address" },
+      { "name": "name", "type": "string", "internalType": "string" },
+      { "name": "role", "type": "string", "internalType": "string" },
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "monthlySalary", "type": "uint256", "internalType": "uint256" },
+      { "name": "streamRate", "type": "uint256", "internalType": "uint256" },
+      { "name": "paymentType", "type": "uint8", "internalType": "enum PayrollRegistry.PaymentType" },
+      { "name": "isActive", "type": "bool", "internalType": "bool" },
+      { "name": "addedAt", "type": "uint256", "internalType": "uint256" },
+      { "name": "lastPaidAt", "type": "uint256", "internalType": "uint256" },
+      { "name": "streamStartedAt", "type": "uint256", "internalType": "uint256" },
+      { "name": "streamClaimedAmount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deposits",
+    "inputs": [
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getDeposit",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" },
+      { "name": "token", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isRegistered",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "nextPayrollAt",
+    "inputs": [
+      { "name": "employer", "type": "address", "internalType": "address" },
+      { "name": "employee", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "NATIVE_TOKEN",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "CompanyRegistered",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "name", "type": "string", "indexed": false, "internalType": "string" },
+      { "name": "payrollInterval", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmployeeAdded",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "employee", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "name", "type": "string", "indexed": false, "internalType": "string" },
+      { "name": "paymentType", "type": "uint8", "indexed": false, "internalType": "enum PayrollRegistry.PaymentType" },
+      { "name": "token", "type": "address", "indexed": false, "internalType": "address" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmployeeRemoved",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "employee", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SalaryUpdated",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "employee", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "newMonthlySalary", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "newStreamRate", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PayrollExecuted",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "paidCount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmployeePaid",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "employee", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "token", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StreamClaimed",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "employee", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "token", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FundsDeposited",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "token", "type": "address", "indexed": false, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FundsWithdrawn",
+    "inputs": [
+      { "name": "employer", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "token", "type": "address", "indexed": false, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" },
+      { "name": "timestamp", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "CompanyNotRegistered",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CompanyAlreadyRegistered",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmployeeAlreadyActive",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmployeeNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InsufficientDeposit",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "required", "type": "uint256", "internalType": "uint256" },
+      { "name": "available", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAmount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotStreamingEmployee",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NothingToClaim",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmptyName",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoLumpSumEmployeesDue",
+    "inputs": []
+  }
+]

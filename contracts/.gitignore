@@ -1,0 +1,18 @@
+# Environment files (CONTAINS SECRETS - NEVER COMMIT)
+.env
+.env.local
+
+# Foundry
+cache/
+broadcast/
+out/
+
+# Dependencies
+lib/
+
+# Testing
+coverage/
+coverage.json
+
+# Misc
+*.log

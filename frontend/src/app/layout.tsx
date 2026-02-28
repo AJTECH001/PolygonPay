@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
+import ClientProviders from "@/components/ClientProviders";
 import NavBar from "@/components/NavBar";
-
-// Disable SSR for wallet providers — RainbowKit/wagmi must not run during
-// static page generation (it throws when NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
-// is absent at build time).
-const Providers = dynamic(() => import("@/components/Providers"), { ssr: false });
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers>
+        <ClientProviders>
           <NavBar />
           <main className="min-h-screen">{children}</main>
-        </Providers>
+        </ClientProviders>
       </body>
     </html>
   );

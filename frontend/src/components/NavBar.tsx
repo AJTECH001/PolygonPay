@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/employer", label: "Employer" },
   { href: "/employee", label: "Employee" },
+  { href: "/analytics", label: "Analytics" },
 ];
 
 export default function NavBar() {

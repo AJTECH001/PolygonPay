@@ -1,19 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createPublicClient, http } from "viem";
-import { polygonAmoy } from "viem/chains";
+import { viemClient as client, CONTRACT_ADDRESS } from "@/lib/viemClient";
 import ABI from "@/abi/PayrollRegistry.json";
-
-const CONTRACT_ADDRESS =
-  (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`) ||
-  "0x0000000000000000000000000000000000000000";
-
-const client = createPublicClient({
-  chain: polygonAmoy,
-  transport: http(
-    process.env.NEXT_PUBLIC_POLYGON_AMOY_RPC ||
-      "https://rpc-amoy.polygon.technology/"
-  ),
-});
 
 interface Employee {
   wallet: string;

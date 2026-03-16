@@ -4,7 +4,6 @@ import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 
 import { useCallback } from "react";
 import { CONTRACT_ADDRESS, NATIVE_TOKEN } from "@/lib/constants";
 import ABI from "@/abi/PayrollRegistry.json";
-import { parseEther } from "viem";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -94,13 +93,23 @@ export function useNextPayrollAt(employer?: `0x${string}`, employee?: `0x${strin
 }
 
 export function useEmployeeInfo(employer?: `0x${string}`, employee?: `0x${string}`) {
-  return useReadContract({
+  const result = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: ABI,
-    functionName: "employees",
-    args: employer && employee ? [employer, employee] : undefined,
+    functionName: "getEmployees",
+    args: employer ? [employer] : undefined,
     query: { enabled: !!(employer && employee) },
   });
+
+  // getEmployees returns [address[], Employee[]] — filter for the connected employee
+  const raw = result.data as [string[], Employee[]] | undefined;
+  const data = raw
+    ? raw[1].find(
+        (emp) => emp.wallet?.toLowerCase() === employee?.toLowerCase()
+      )
+    : undefined;
+
+  return { ...result, data };
 }
 
 // ── Writes ────────────────────────────────────────────────────────────────────

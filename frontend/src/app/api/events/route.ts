@@ -1,21 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createPublicClient, http, parseAbiItem } from "viem";
-import { polygonAmoy } from "viem/chains";
-
-const CONTRACT_ADDRESS =
-  (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`) ||
-  "0x0000000000000000000000000000000000000000";
-
-// Block when PayrollRegistry was deployed on Amoy — avoids scanning the full chain
-const DEPLOY_BLOCK = BigInt(34567860);
-
-const client = createPublicClient({
-  chain: polygonAmoy,
-  transport: http(
-    process.env.NEXT_PUBLIC_POLYGON_AMOY_RPC ||
-      "https://rpc-amoy.polygon.technology/"
-  ),
-});
+import { parseAbiItem } from "viem";
+import { viemClient as client, CONTRACT_ADDRESS, DEPLOY_BLOCK } from "@/lib/viemClient";
 
 // Parse individual event signatures
 const EMPLOYEE_PAID_EVENT = parseAbiItem(
